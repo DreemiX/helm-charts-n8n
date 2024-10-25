@@ -2,8 +2,8 @@ apiVersion: v2
 name: n8n
 description: A N8N Helm chart for Kubernetes. n8n is a free and open fair-code licensed node-based Workflow Automation Tool.
 type: application
-version: 0.136.0
-appVersion: "0.136.0"
+version: 0.137.0
+appVersion: "0.137.0"
 
 keywords:
 - n8n
@@ -18,7 +18,7 @@ icon: https://avatars.githubusercontent.com/u/45487711?s=200&v=4
 
 dependencies:
   - name: postgresql
-    version: 10.9.4
+    version: 17.0.0
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mysql
@@ -26,7 +26,7 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: mysql.enabled
   - name: mariadb
-    version: 9.4.4
+    version: 11.4.3
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
   - name: redis
