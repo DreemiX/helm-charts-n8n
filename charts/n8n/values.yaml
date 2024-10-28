@@ -144,10 +144,10 @@ affinity: {}
 ## Bitnami PostgreSQL
 ## https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
-  enabled: true
+  enabled: false
   postgresqlUsername: n8n
-  postgresqlPassword: "N8nPassW0r$"
-  postgresqlPostgresPassword: "N8nPassW0r$"
+  postgresqlPassword: Change_Me_!
+  postgresqlPostgresPassword: Change_Me_!
   existingSecret: ""
   postgresqlDatabase: n8n
   persistence:
