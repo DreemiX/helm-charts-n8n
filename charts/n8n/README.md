@@ -1,16 +1,16 @@
 # n8n
 
-![Version: 0.136.0-v6](https://img.shields.io/badge/Version-0.136.0--v6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.136.0](https://img.shields.io/badge/AppVersion-0.136.0-informational?style=flat-square)
+![Version: 0.136.0-v6](https://img.shields.io/badge/Version-0.137.0--v6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.137.0](https://img.shields.io/badge/AppVersion-0.137.0-informational?style=flat-square)
 
 A N8N Helm chart for Kubernetes. n8n is a free and open fair-code licensed node-based Workflow Automation Tool.
 
-**Homepage:** <https://github.com/linogics/helm-charts/tree/master/charts/n8n>
+**Homepage:** <https://github.com/DreemiX/helm-charts-n8n/tree/master/charts/n8n>
 
 ## Source Code
 
 * <https://n8n.io/>
 * <https://github.com/n8n-io/n8n>
-* <https://github.com/linogics/helm-charts/tree/master/charts/n8n>
+* <https://github.com/DreemiX/helm-charts-n8n/tree/master/charts/n8n>
 
 ## Requirements
 
