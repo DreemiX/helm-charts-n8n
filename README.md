@@ -25,8 +25,8 @@ helm install n8n n8n-repo/n8n \
   --create-namespace \
   --set postgresql.enabled=true \
   --set postgresql.postgresqlUsername=n8n \
-  --set postgresql.postgresqlPassword=N8nPassW0r$ \
-  --set postgresql.postgresqlPostgresPassword=N8nPassW0r$ \
+  --set postgresql.postgresqlPassword=your_postgresql_password \
+  --set postgresql.postgresqlPostgresPassword=your_postgres_password \
   --set postgresql.postgresqlDatabase=n8n \
   --set persistence.enabled=true \
   --set persistence.size=1Gi \
@@ -37,9 +37,9 @@ helm install n8n n8n-repo/n8n \
   --set env.DB_POSTGRESDB_USER=n8n \
   --set env.DB_POSTGRESDB_DATABASE=n8n \
   --set env.DB_POSTGRESDB_HOST=n8n-postgresql.n8n-ns.svc.cluster.local \
-  --set env.DB_POSTGRESDB_PASSWORD=N8nPassW0r$ \
-  --set env.WEBHOOK_URL=https://n8n.seosmart.ua/ \
-  --set env.N8N_ENCRYPTION_KEY=p4b4U93Cjc/M01rUaunRXgSMrM4ggGby \
+  --set env.DB_POSTGRESDB_PASSWORD=your_postgres_password \
+  --set env.WEBHOOK_URL=https://your-domain.com/ \
+  --set env.N8N_ENCRYPTION_KEY=your_encryption_key \
   --set service.type=ClusterIP \
   --set service.port=5678 \
   --set service.targetPort=5678
