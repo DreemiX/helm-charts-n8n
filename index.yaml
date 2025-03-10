@@ -2,6 +2,44 @@ apiVersion: v1
 entries:
   n8n:
   - apiVersion: v2
+    appVersion: 0.137.3
+    created: "2025-03-10T15:43:21.796317936Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.6
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.19
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.4.3
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.2.1
+    description: A N8N Helm chart for Kubernetes. n8n is a free and open fair-code
+      licensed node-based Workflow Automation Tool.
+    digest: 8a3fa96161e8ed7dc5e4ab0177ef3d9c2dddbfe092d7ecd02fe6d34f9f96b810
+    home: https://github.com/DreemiX/helm-charts-n8n/tree/master/charts/n8n
+    icon: https://avatars.githubusercontent.com/u/45487711?s=200&v=4
+    keywords:
+    - n8n
+    - workflow
+    - automation
+    name: n8n
+    sources:
+    - https://n8n.io/
+    - https://github.com/n8n-io/n8n
+    - https://github.com/DreemiX/helm-charts-n8n/tree/master/charts/n8n
+    type: application
+    urls:
+    - https://github.com/DreemiX/helm-charts-n8n/releases/download/n8n-0.137.3/n8n-0.137.3.tgz
+    version: 0.137.3
+  - apiVersion: v2
     appVersion: 0.137.2
     created: "2025-03-10T15:25:52.906925306Z"
     dependencies:
@@ -77,4 +115,4 @@ entries:
     urls:
     - https://github.com/DreemiX/helm-charts-n8n/releases/download/n8n-0.137.1/n8n-0.137.1.tgz
     version: 0.137.1
-generated: "2025-03-10T15:25:52.906936888Z"
+generated: "2025-03-10T15:43:21.796331551Z"
