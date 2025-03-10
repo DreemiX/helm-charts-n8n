@@ -1,23 +1,26 @@
+{{- if .Values.worker.enabled }}
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: {{ include "n8n.fullname" . }}
+  name: {{ include "n8n.fullname" . }}-worker
   labels:
     {{- include "n8n.labels" . | nindent 4 }}
+    app.kubernetes.io/component: worker
 spec:
-  serviceName: {{ include "n8n.fullname" . }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.worker.replicaCount }}
   selector:
     matchLabels:
       {{- include "n8n.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: worker
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.worker.annotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
         {{- include "n8n.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: worker
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -27,12 +30,12 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ .Chart.Name }}-worker
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["n8n"]
+          command: ["n8n", "worker"]
           env:
             {{- range $k, $v := $.Values.env }}
             - name: {{ quote $k }}
@@ -43,28 +46,12 @@ spec:
               valueFrom:
                 {{- toYaml $val | nindent 16 }}
             {{- end }}
-            {{- with $.Values.envFrom }}
+          {{- with $.Values.envFrom }}
           envFrom:
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
-          ports:
-            - name: http
-              containerPort: {{ default .Values.env.N8N_PORT 5678 }}
-              protocol: TCP
-          {{- if .Values.livenessProbe.enabled }}
-            {{- with omit .Values.livenessProbe "enabled" }}
-          livenessProbe:
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
-          {{- end }}
-          {{- if .Values.readinessProbe.enabled }}
-            {{- with omit .Values.readinessProbe "enabled" }}
-          readinessProbe:
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.worker.resources | nindent 12 }}
           volumeMounts:
             {{- $mountPath := "/home/node"}}
             {{- if .Values.env.N8N_USER_FOLDER }}
@@ -75,31 +62,20 @@ spec:
             {{- with .Values.extraVolumeMounts }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
-  volumeClaimTemplates:
-    - metadata:
-        name: {{ include "n8n.fullname" . }}
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        {{- if .Values.persistence.storageClass }}
-        {{- if (eq "-" .Values.persistence.storageClass) }}
-        storageClassName: ""
-        {{- else }}
-        storageClassName: "{{ .Values.persistence.storageClass }}"
-        {{- end }}
-        {{- end }}
-        resources:
-          requests:
-            storage: {{ .Values.persistence.size }}
-      {{- with .Values.nodeSelector }}
+      volumes:
+        - name: {{ include "n8n.fullname" . }}
+          persistentVolumeClaim:
+            claimName: {{ include "n8n.fullname" . }}-0
+      {{- with .Values.worker.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.worker.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.worker.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
+{{- end }} 

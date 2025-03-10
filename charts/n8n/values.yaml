@@ -201,3 +201,12 @@ redis:
     enabled: true
     existingClaim: ""
     size: 2Gi
+
+worker:
+  enabled: false
+  replicaCount: 1
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  annotations: {}
