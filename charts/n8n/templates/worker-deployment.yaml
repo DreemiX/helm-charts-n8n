@@ -65,7 +65,7 @@ spec:
       volumes:
         - name: {{ include "n8n.fullname" . }}
           persistentVolumeClaim:
-            claimName: {{ include "n8n.fullname" . }}-0
+            claimName: n8n
       {{- with .Values.worker.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

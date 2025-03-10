@@ -75,6 +75,10 @@ spec:
             {{- with .Values.extraVolumeMounts }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
+      volumes:
+        - name: {{ include "n8n.fullname" . }}
+          persistentVolumeClaim:
+            claimName: n8n
   volumeClaimTemplates:
     - metadata:
         name: {{ include "n8n.fullname" . }}
